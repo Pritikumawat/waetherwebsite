@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <title>Weather App</title>
+    <style>
+        #background{
+    background-color: #4683f4;
+  
+    box-shadow: 2px 2px 2px #7dc1eb;
+    border-radius: 10px;
+  
+}
+#weathercon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#weathercon .fas {
+    font-size: 6rem;
+    animation: fas-anime 3s linear infinite alternate;
+}
+@keyframes fas-anime {
+    from{
+        transform:scale(1.1);
+
+    }
+    to{
+transform: scale(1.5);
+    }
+}
+
+#date{
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-size: 2rem;
+}
+.temp{
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-size: 2rem;
+}
+.tempmin_max{
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-size: 2rem;
+}
+.location{
+    font-size: 4rem;
+    font-weight: 800;
+    font-size: 400;
+}
+.fa-street-view{
+    animation: rotates 3s linear infinite alternate;
+}
+@keyframes rotates {
+    from {
+        transform: translateX(-0.5rem);
+
+    }
+    to{
+        transform: translateX(0.5rem);
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container text-center">
+    <div class="row ">
+        <div class="col-7 mx-auto mt-5" id="background">
+        <div class="wave-one"></div>
+        <div class="wave-two"></div>
+        <div class="wave-three"></div>
+        <div id="weathercon">
+            <i class="fas fa-sun mt-5" style="color:#eccc68 " id="sun"></i>
+        </div>
+        <div id="center">
+        <div class ="info mt-5">
+            <h2 class="location"><i class="fas fa-street-view m-3" style="color:white; "></i>{%location%},{%country%}</h2>
+            <p id ="date"></p>
+            <h1 class="temp">{%tempval%}°F</h1>
+            <h3 class="tempmin_max">Min {%tempmin%}°F| Max {%tempmax%}°F </h3>
+        </div>
+        </div>
+   </div>
+</div>
+</div>
+<script type="">
+    const curDate = document.getElementById('date');
+    let weathercon = document.getElementById('weathercon');
+    const tempStatus = "{%temstatus%}";
+    if(tempStatus == "Sunny"){
+        weathercon.innerHTML = "<i class='fas fa-sun mt-5' style='color:#eccc68 ' ></i>"
+    }else if(tempStatus == "Clouds"){
+        weathercon.innerHTML = "<i class='fas fa-cloud mt-5' style='color:#fff ' ></i>"
+    }else if(tempStatus == "Rainy"){
+        weathercon.innerHTML = "<i class='fas fa-cloud-rain mt-5' style='color:#a4b0be '></i>"
+    }else {
+        weathercon.innerHTML = "<i class='fas fa-cloud mt-5' style='color:#fff '></i>"
+    }
+    const getCurrentDay = ()=>{
+        var weekday = new Array(7);
+        weekday[0] = "Sunday";
+        weekday[1] = "Monday";
+        weekday[2] = "Tuesday";
+        weekday[3] = "Wed";
+        weekday[4] = "Thursday";
+        weekday[5] = "Friday";
+        weekday[6] = "Saturday";
+
+        let currentTime = new Date();
+        let day =weekday[currentTime.getDay()];
+        return day;
+    };
+    const getCurrentTime = ()=>
+    {
+        var month = new Array(12);
+        month[0] ="Jan";
+        month[1] ="Feb";
+        month[2] ="March";
+        month[3] ="April";
+        month[4] ="May";
+        month[5] ="June";
+        month[6] ="July";
+        month[7] ="August";
+        month[8] ="Sept";
+        month[9] ="Oct";
+        month[10] ="Nov";    
+        month[11] ="Dec";
+        var now = new Date();
+         var months = month[now.getMonth()];
+        var date = now.getDate();
+        var hours =now.getHours();
+        var mins = now.getMinutes();
+        var perios = "AM";
+        if (hours>11 ){
+            perios ="PM";
+            if (hours>12)hours -=12;
+        }
+        if(mins < 10){
+            mins = "0"+ mins;
+        }
+
+        
+     
+      
+       return `${months}${date} | ${hours}:${mins}${perios}`;
+    };
+    curDate.innerHTML= getCurrentTime() + "|" + getCurrentDay();
+
+    
+
+</script>
+</body>
+</html>

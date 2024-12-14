@@ -1,0 +1,58 @@
+#background{
+    background-color: #4683f4;
+    height: 70vh;
+    box-shadow: 2px 2px 2px #7dc1eb;
+    border-radius: 10px;
+  
+}
+#weathercon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#weathercon .fas {
+    font-size: 6rem;
+    animation: fas-anime 3s linear infinite alternate;
+}
+@keyframes fas-anime {
+    from{
+        transform:scale(1.1);
+
+    }
+    to{
+transform: scale(1.5);
+    }
+}
+
+#date{
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-size: 2rem;
+}
+.temp{
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-size: 2rem;
+}
+.tempmin_max{
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-size: 2rem;
+}
+.location{
+    font-size: 4rem;
+    font-weight: 800;
+    font-size: 400;
+}
+.fa-street-view{
+    animation: rotates 3s linear infinite alternate;
+}
+@keyframes rotates {
+    from {
+        transform: translateX(-0.5rem);
+
+    }
+    to{
+        transform: translateX(0.5rem);
+    }
+}
